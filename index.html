@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>尾牙音控介面</title>
+        <style>
+            body {
+                margin: 1em 2em 0 2em;
+            }
+
+            .btn-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            .btn {
+                border: 1px solid rgb(230,230,230);
+                background-color: rgb(80,80,80);
+                padding: 1em;
+                color: white;
+                margin: 0 1em 2em 0;
+                flex: 1;
+                cursor: pointer;
+                transition: box-shadow 0.18s cubic-bezier(0.0, 0.0, 0.2, 1);
+            }
+
+            .btn:hover {
+                background-color: rgb(40,40,40);
+            }
+
+            .btn:disabled {
+                cursor:not-allowed;
+                background-color: gray;
+            }
+
+            .flex-container {
+                display: flex;
+            }
+
+            .flex-container div {
+                flex: 1;
+            }
+
+            .list {
+                height: 40vh;
+                overflow-y: auto;
+                border: 1px solid rgb(220,220,220);
+                margin-right: 1em;
+                padding: 0.5em 1.5em 2.2em 1.5em;
+            }
+
+            .list li {
+                padding: 10px 6px;
+                border-bottom: 1px solid rgb(220,220,220);
+            }
+
+            .list li.selected {
+                font-weight: bolder;
+            }
+
+            #individual .list {
+                list-style: none;
+            }
+
+            #individual .list li {
+                list-style: none;
+                cursor: pointer;
+            }
+
+            #individual .list li:hover {
+                background-color: rgb(220,220,220);
+            }
+
+            #individual .list li.selected {
+                background-color: rgb(30,30,30);
+                color: white;
+            }
+
+
+            input[type="range"] {
+                width: 95%;
+                margin-left: 0%;
+                margin-right: 5%;
+                margin-bottom:2em; 
+            }
+
+            label {
+                margin-right: 2em;
+                margin-bottom: 1.5em;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div class="flex-container">
+            <div id="playlist">
+                <h1>播放清單</h1>
+                <input type="file" id="playlist-input" multiple />
+                <ol class="list">
+                </ol>
+                <input id="playlist-vol-control" type="range" min="0" max="100" value="100" step="1"/>
+                <div class="btn-container">
+                    <button class="btn">播放</button>
+                </div>
+            </div>
+            <div id="individual">
+                <h1>隨選播放</h1>
+                <input type="file" id="individual-input" multiple />
+                <ul class="list">
+                </ul>
+                <input id="individual-vol-control" type="range" min="0" max="100" value="100" step="1"/>
+                <div id="playback-controls" class="btn-container">
+                    <button id="play" class="btn">播放</button>
+                    <label><input id="repeat" type="checkbox" name="repeat" />單首重複</label>
+                </div>
+            </div>
+        </div>
+        <audio id="playlist-audio"></audio>
+        <audio id="individual-audio"></audio>
+        <script src="index.js"></script>
+    </body>
+</html>
